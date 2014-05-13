@@ -1,0 +1,16 @@
+markdown: kramdown
+pygments: true
+# Permalinks
+permalink: pretty
+
+# Setup
+title:    Sandbox Engineering Blog
+url:      https://getsandbox.com
+
+authors:
+  ando:
+    name: Andrew Stewart
+  nick:
+    name: Nick Houghton
+
+paginate: 5

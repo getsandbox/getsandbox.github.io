@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  {% include head.html %}
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          {% include navbar.html %}
+
+          {% for post in paginator.posts %}
+            {% assign author = site.authors[post.author] %}
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h2 class="blog-title"><a href="{{ post.url }}">{{ post.heading }}</a></h2>
+                <p class="author">
+                  <span class="date">{{ author.name }}, {{ site.time | date: "%B %-d, %Y" }}</span>
+                </p>
+                <hr>
+                {{ post.content }}
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <!-- Pagination links -->
+      <div class="row">
+
+        {% if paginator.total_pages > 1 %}
+        <div class="col-md-offset-5 col-md-2 paginator">
+
+          {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"><!--span class="glyphicon glyphicon-arrow-left"></span-->Newer</a>
+          {% endif %}
+
+          {% if paginator.previous_page and paginator.next_page %}
+            &nbsp;&nbsp;
+          {% endif %}
+
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older<!--span class="glyphicon glyphicon-chevron-right"></span--></a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% include footer.html %}
+  </body>
+</html>
