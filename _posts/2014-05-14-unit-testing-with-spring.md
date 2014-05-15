@@ -3,7 +3,7 @@ layout: post
 heading: Unit Testing Camel TypeConverters
 author: ando
 ---
-At Sandbox, we use the Apache Camel framework extensively for its swiss army knife approach to integration, and Spring for its dependency injection capabilities. Testing is a crucial part of our development process, and unit-testing in particular helps ensure our components are robustly designed. Howerver, getting JUnit, Spring and Camel to all play nice when unit-testing is fiddly. We favour Java annotations for Spring configuration and test class examples are few and far between so here\'s one way to do it.
+At Sandbox, we use the Apache Camel framework extensively for its swiss army knife approach to integration, and Spring for its dependency injection capabilities. Testing is a crucial part of our development process and, unit-testing in particular, helps ensure our components are robustly designed. Howerver, getting JUnit, Spring and Camel to all play nice when unit-testing is fiddly. We favour Java annotations for Spring configuration and test class examples are few and far between so here\'s one way to do it.
 
 To keep it simple, our unit under test will be a Camel TypeConverter which is essentially a POJO to marshal data between types.
 
@@ -31,11 +31,9 @@ public final class ResponseConverter {
 {% endhighlight %}
 
 
-We\'ve decided on using instance methods in our converters to help ease the unit testing process. Spring is responsible for injecting the `foo` property and we can ignore the `@Converter` annotations for now. The objective is to test the sole method `toResponse`.
+We\'ve decided on using instance methods in our converters to help ease the unit testing process. Spring is responsible for injecting the `foo` property and we can ignore the `@Converter` annotations for now. The objective is to test the sole method `toResponse()`.
 
 To control the dependency injection, our test class needs to use the Spring JUnit4.x test runner and provide its own Spring Context Configuration. The skeleton of our unit-test looks like this:
-
-
 
 {% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -55,13 +53,13 @@ public class ResponseConverterTest {
 
     @Test
     public void toResponse_fromRequest_shouldReturnOk() {
-        Response response = new Response();
+        Response response = new ResponseConverter().toResponse();
         assertTrue("result should be true", response.getResult());
     }
 
     @Test
     public void toResponse_fromRequest_shouldReturnFailed() {
-        Response response = new Response();
+        Response response = new ResponseConverter().toResponse();
         assertFalse("result should be false", response.getResult());
     }
 }
@@ -69,7 +67,7 @@ public class ResponseConverterTest {
 
 We favour Java annotations to configure Spring. The `@ContextConfiguration` annotation instructs Spring to use our static class `ContextConfiguration` to instantiate a `Foo` instance for later injection into components.
 
-So we've loaded a Spring contexct but we haven't yet instructed Spring to scan for components. We could use `@ComponentScsan` but we prefer having more explicit control over the instantiation of our unit and ensure we have a new copy of it for each test. We can do this quickl by getting the `ApplicationContext` and use it to wire up a new copy of our unit before each test is run.
+So we\'ve loaded a Spring contexct but we haven't yet instructed Spring to scan for components. We could use `@ComponentScsan` but we prefer having explicit control over the instantiation of our unit ensuring a new instance is created for each test. We can do this quickly by getting the `ApplicationContext` and use it to wire up a new instance of `ResponseConverter` before each test is run.
 
 {% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -100,19 +98,19 @@ public class ResponseConverterTest {
 
     @Test
     public void toResponse_fromRequest_shouldReturnOk() {
-        Response response = new Response();
+        Response response = responseConverter.toResponse();
         assertTrue("result should be true", response.getResult());
     }
 
     @Test
     public void toResponse_fromRequest_shouldReturnFailed() {
-        Response response = new Response();
+        Response response = responseConverter.toResponse();
         assertFalse("result should be false", response.getResult());
     }
 }
 {% endhighlight %}
 
-Almost there, only remaining task is to mock the `Foo` dependency. We use the excellent Mockito library to mock classes and their methods. Use Spring to wire the `Foo` component into our test class so we can mock its methods. What we discovered during testing is that we needed a new Spring context for each test otherwise mock behaviours we had set would carry over (and we wanted to avoid using `Mockito.reset(...)`). `@DirtiesContext` can be used at the class level or method level which will force a reload of the `ApplicationContext` after any such annotated method as well as after the entire class. Providing the `AFTER_EACH_TEST_MEHOD` forces it to reload after each test. Here's our completed test class.
+Almost there, only remaining task is to mock the `Foo` dependency so we can alter the behaviour to satisfy the second test. We use the excellent Mockito library to mock classes and their methods. Use Spring to wire the `Foo` component into our test class so we can mock its methods. What we discovered during testing is that we needed a new Spring context for each test otherwise mock behaviours we had set would carry over (and we wanted to avoid using `Mockito.reset(...)`). `@DirtiesContext` can be used at the class level or method level which will force a reload of the `ApplicationContext` after any such annotated method as well as after the entire class. Providing the `AFTER_EACH_TEST_MEHOD` forces it to reload after each test. Here's our completed test class.
 
 {% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
