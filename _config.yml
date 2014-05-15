@@ -1,4 +1,5 @@
-markdown: kramdown
+# markdown: kramdown
+markdown: maruku
 pygments: true
 # Permalinks
 permalink: pretty
