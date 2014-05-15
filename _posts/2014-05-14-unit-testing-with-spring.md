@@ -7,7 +7,8 @@ At Sandbox, we use the Apache Camel framework extensively for its swiss army kni
 
 To keep it simple, our unit under test will be a Camel TypeConverter which is essentially a POJO to marshal data between types.
 
-~~~java
+
+{% highlight java %}
 @Converter
 @Component
 public final class ResponseConverter {
@@ -27,14 +28,16 @@ public final class ResponseConverter {
     }
     // ... getters, setters etc.
 }
-~~~
+{% endhighlight %}
 
 
 We\'ve decided on using instance methods in our converters to help ease the unit testing process. Spring is responsible for injecting the `foo` property and we can ignore the `@Converter` annotations for now. The objective is to test the sole method `toResponse`.
 
 To control the dependency injection, our test class needs to use the Spring JUnit4.x test runner and provide its own Spring Context Configuration. The skeleton of our unit-test looks like this:
 
-~~~ java
+
+
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
   classes = {ResponseConverterTest.ContextConfiguration.class},
@@ -62,13 +65,13 @@ public class ResponseConverterTest {
         assertFalse("result should be false", response.getResult());
     }
 }
-~~~
+{% endhighlight %}
 
 We favour Java annotations to configure Spring. The `@ContextConfiguration` annotation instructs Spring to use our static class `ContextConfiguration` to instantiate a `Foo` instance for later injection into components.
 
 So we've loaded a Spring contexct but we haven't yet instructed Spring to scan for components. We could use `@ComponentScsan` but we prefer having more explicit control over the instantiation of our unit and ensure we have a new copy of it for each test. We can do this quickl by getting the `ApplicationContext` and use it to wire up a new copy of our unit before each test is run.
 
-~~~ java
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
   classes = {ResponseConverterTest.ContextConfiguration.class},
@@ -107,11 +110,11 @@ public class ResponseConverterTest {
         assertFalse("result should be false", response.getResult());
     }
 }
-~~~
+{% endhighlight %}
 
 Almost there, only remaining task is to mock the `Foo` dependency. We use the excellent Mockito library to mock classes and their methods. Use Spring to wire the `Foo` component into our test class so we can mock its methods. What we discovered during testing is that we needed a new Spring context for each test otherwise mock behaviours we had set would carry over (and we wanted to avoid using `Mockito.reset(...)`). `@DirtiesContext` can be used at the class level or method level which will force a reload of the `ApplicationContext` after any such annotated method as well as after the entire class. Providing the `AFTER_EACH_TEST_MEHOD` forces it to reload after each test. Here's our completed test class.
 
-~~~ java
+{% highlight java %}
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
   classes = {ResponseConverterTest.ContextConfiguration.class},
@@ -160,6 +163,6 @@ public class ResponseConverterTest {
         assertTrue("result should be true", response.getResult());
     }
 }
-~~~
+{% endhighlight %}
 
 This is just a brief introduction to getting started with unit-testing Camel Components in Spring. In the coming weeks we'll build on this and demonstrate how we test complex components with routing.
