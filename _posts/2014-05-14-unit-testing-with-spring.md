@@ -7,7 +7,7 @@ At Sandbox, we use the Apache Camel framework extensively for its swiss army kni
 
 To keep it simple, our unit under test will be a Camel TypeConverter which is essentially a POJO to marshal data between types.
 
-~~~ java
+~~~java
 @Converter
 @Component
 public final class ResponseConverter {
