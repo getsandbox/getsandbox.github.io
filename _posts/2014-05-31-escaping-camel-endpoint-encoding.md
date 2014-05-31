@@ -10,28 +10,28 @@ A simple integration...
 
 Here at Sandbox we use Apache Camel for all our routing and mediation, most of the time it makes hard things really easy, but recently we had to integrate with a system over HTTP that used an escaped path parameter as its input. So the request needed to look like this:
 
-```
+{% highlight java %}
 http://api.somesystem.com/resource/get/RootDir%2FSubDir%2FFilename
-```
+{% endhighlight %}
 
 So a seemingly simple task, we need to pass in a URI style value in the path parameter of a request and all reserved URI characters need to be URL encoded, so they can be presumably decoded on the other side.
 
 We are using the Camel Jetty component for outbound (or consumer in Camel speak) endpoints, so I setup my route like this:
 
-```Java
+{% highlight java %}
 from("direct:callSystem")
 .bean(bean, "doSomething")
 .recipientList(
 	simple("jetty://http://api.somesystem.com/resource/get/${urlEncodedPathParam}")
 )
 
-```
+{% endhighlight %}
 
 Passing in a URL encoded version of my desired path parameter, 'RootDir%2FSubDir%2FFilename'. But the resulting jetty call resolved to this:
 
-```
+{% highlight java %}
 http://api.somesystem.com/resource/get/RootDir/SubDir/Filename
-```
+{% endhighlight %}
 
 Where did my encoding go!?
 --------
