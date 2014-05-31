@@ -46,3 +46,13 @@ To make it work
 So after a bit of digging around, I eventually was able to get Camel to produce the correct Endpoint URI by **triple encoding the value**. Camel must have some decoding logic that picks up a second encoding, but a triple encoded value seems to get processed the perfect amount!
 
 Hopefully that saves someone from having to step through the source code like I had to.
+
+{% highlight java %}
+public String getEncodedParameter(){
+	//bit ridiculous.
+	return URLEncoder.encode(
+                URLEncoder.encode(
+                        URLEncoder.encode(path)));
+}
+
+{% endhighlight %}
