@@ -1,6 +1,7 @@
 ---
 layout: post
 heading: Unit Testing Camel TypeConverters
+description: Testing Camel components can be tricky, there are so many options. Here we have laid out our approach to testing the Camel Type Converters with Spring 3 using annotations and Java Config.
 author: ando
 ---
 At Sandbox, we use the Apache Camel framework extensively for its swiss army knife approach to integration, and Spring for its dependency injection capabilities. Testing is a crucial part of our development process and, unit-testing in particular, helps ensure our components are robustly designed. Howerver, getting JUnit, Spring and Camel to all play nice when unit-testing is fiddly. We favour Java annotations for Spring configuration and test class examples are few and far between so here\'s one way to do it.

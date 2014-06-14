@@ -1,6 +1,7 @@
 ---
 layout: post
 heading: URL Encoding and Camel HTTP Endpoints
+description: A quick tip on Camel URL / URI escaping in endpoints, sometimes like in our situation you need raw encoded content in a Endpoint URI to achieve this you need to triple escape.
 author: nick
 ---
 
