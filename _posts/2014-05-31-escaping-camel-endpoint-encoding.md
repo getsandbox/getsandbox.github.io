@@ -5,10 +5,6 @@ description: A quick tip on Camel URL / URI escaping in endpoints, sometimes lik
 author: nick
 ---
 
-
-A simple integration...
-----------
-
 Here at Sandbox we use Apache Camel for all our routing and mediation, most of the time it makes hard things really easy, but recently we had to integrate with a system over HTTP that used an escaped path parameter as its input. So the request needed to look like this:
 
 {% highlight java %}
@@ -34,15 +30,13 @@ Passing in a URL encoded version of my desired path parameter, 'RootDir%2FSubDir
 http://api.somesystem.com/resource/get/RootDir/SubDir/Filename
 {% endhighlight %}
 
-Where did my encoding go!?
---------
+### Where did my encoding go!?
 
 So after much digging around the Camel source code, it appears all endpoints that inherit from the core HttpEndpoint class auto decode values that make up the Endpoint URI. In my desire to make it work and move on I didn't dig into why this is, but the solution to the problem is to just escape the values a few more times.
 
 
 
-To make it work
----------
+### Making it work
 
 So after a bit of digging around, I eventually was able to get Camel to produce the correct Endpoint URI by **triple encoding the value**. Camel must have some decoding logic that picks up a second encoding, but a triple encoded value seems to get processed the perfect amount!
 

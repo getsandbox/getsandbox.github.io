@@ -1,3 +1,8 @@
+p {
+  line-height: 23px;
+  color: #444;
+}
+
 .twitter-button {
   background: url(/lib/images/icon_twitter.png) no-repeat left center;
   background-size: 14px 14px;
@@ -33,6 +38,19 @@
 .fourohfour {
   margin: 30px 0;
   text-align: center
+}
+
+h3, .h3, h4, .h4, h5, .h5 {
+  font-size: 14px;
+  color: #444444;
+  font-weight: 700;
+}
+
+img {
+  width: 720px;
+  height: 100%;
+  border: 1px solid #cccccc;
+  margin: 20px 0;
 }
 
 /*

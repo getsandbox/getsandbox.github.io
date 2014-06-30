@@ -1,13 +1,9 @@
 ---
 layout: post
-heading: Deleting Subdomain Cookies in Angular
+heading: Deleting Cookies in Angular
 description: A solution to a presumably fairly common problem with using the $cookies service to delete cookies on the client side in AngularJS
 author: nick
 ---
-
-
-Die cookie, die!
-----------
 
 We use AngularJS to build our frontend apps here at Sandbox HQ, normally Angular does all the heavy lifting for us but I came across a problem the other day where Angular kind of got in the way.
 
@@ -27,8 +23,7 @@ All of this works fine with Angular, the problem came when logging out the web a
 But since our web app is hitting 'api.getsandbox.com' for all requests the cookie domain was created as `'.getsandbox.com'` which means it works for all subdomains.
 
 
-To make it work
----------
+### Making it work
 
 So to fix my frustrating problems of the invincible username cookie, I had to change this $cookies only code:
 
