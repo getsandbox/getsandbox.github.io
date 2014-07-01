@@ -14,7 +14,7 @@
               <div class="panel-body">
                 <h2 class="blog-title"><a href="{{ post.url }}">{{ page.heading }}</a></h2>
                 <p class="author">
-                  <span class="date">{{ author.name }}, {{ site.time | date: "%B %-d, %Y" }}</span>
+                  <span class="date">{{ author.name }}, {{ page.date | date: "%B %-d, %Y" }}</span>
                 </p>
                 <hr>
                 {{ content }}
