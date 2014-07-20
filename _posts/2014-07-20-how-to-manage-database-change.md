@@ -5,11 +5,9 @@ description: Managing incremental database change has always been one of the mos
 author: nick
 ---
 
-
-Ugh, databases.
-----------
-
 Such is the pain of having to deal with databases and the incremental change that comes as applications evolve, that in the past we actively design around having to store state to avoid them, or when storing is unavoidable, do it in a way that makes it as easy as possible to change things over time, potentially sacrificing nice things like indexes and simple querying.
+
+### Ugh, databases.
 
 Obviously using modern ORMs like Hibernate and EclipseLink make defining the schema and interacting with the data easier. But that still leaves the painful job of migrating data from an old version to the latest version. In the most basic example this could be making a small schema change from one application version to the next, or in a more difficult scenario you might need to migrate a number of significant schema differences and the associated data between major application versions.
 
@@ -19,8 +17,7 @@ What I wanted was a tool that helped me firstly find the difference between what
 
 The two standouts for this job were liquibase and flyway. I intially dismissed flyway as the documentation / getting-started page didn't grab me and someone had already discussed liquibase with me previously. So I started there.
 
-Liquibase, XML ftw?
-----------
+### Liquibase, XML ftw?
 
 So I was immediately a bit suss on liquibase for using XML as its definition language, I think we're all a bit sick of XML generally and I didn't really love the idea of having to learn a new DSL to describe how I wanted to manipulate a database, that is really what we have SQL for.
 
@@ -32,8 +29,7 @@ The other problem was writing the XML. As I’m using Hibernate, I’m cheating 
 
 At this point I gave up on liquibase, too many problems, not enough value.
 
-Flyway
-----------
+### Flyway
 
 So after a few weeks of sulking about liquibase not solving all my problems I went back to Flyway. Maybe it is just the way I read things or how the getting started page is structured, but it just seemed like too much effort to get going, however motivated by my failure with liquibase I got on with it, and found what I now consider to the be the perfect solution to this problem (we will see how I feel about that in a few months).
 
@@ -49,8 +45,7 @@ A couple of other added bonuses of the SQL migrations:
 -	No new DSL, not having to learn something new is generally a positive.
 
 
-Summary
-----------
+### Summary
 
 If you are like me, and have been putting this problem in the too-hard basket, go look at flyway it solved all my problems, without making me bend over backwards to accommodate it. Now I don't worry about database migration anymore. Amazing.
 
