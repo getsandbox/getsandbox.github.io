@@ -19,19 +19,19 @@ We needed a solution where Gradle still maintained the dependency graph, but del
 
 So to get around this we want Gradle to write out all the JARs (with absolute paths) that the application requires to run to a file, then get the OS to execute Java with that classpath. Here is quick and dirty version:
 
-```
+{% highlight %}
 task createdeps() {
     def file = new File("/tmp/runcomponent.sh")
     file.write("/usr/bin/java -cp " + sourceSets.main.runtimeClasspath.asPath + " com.test.YourMainClass");
 }
-```
+{% endhighlight %}
 
 We create a new task called 'createdeps' that will write a script to the `/tmp/` directory that can be executed to start a new JVM for our application. The script contains the full classpath as seen by Gradle, you should only have to replace the last parameter with your fully qualified Main class and it should work OTB! Because this Gradle task doesn't actually run anything, it just introspects the classpath, gradle should exit as soon as it has written the script, unlike a JavaExec task.
 
 Tieing it all together, a one-liner to write out the script and execute it:
 
-```
+{% highlight %}
 gradle createdeps; sh -c /tmp/runcomponent.sh
-```
+{% endhighlight %}
 
 800MB RAM Saved!
