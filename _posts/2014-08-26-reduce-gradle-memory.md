@@ -19,7 +19,7 @@ We needed a solution where Gradle still maintained the dependency graph, but del
 
 So to get around this we want Gradle to write out all the JARs (with absolute paths) that the application requires to run to a file, then get the OS to execute Java with that classpath. Here is quick and dirty version:
 
-{% highlight %}
+{% highlight groovy %}
 task createdeps() {
     def file = new File("/tmp/runcomponent.sh")
     file.write("/usr/bin/java -cp " + sourceSets.main.runtimeClasspath.asPath + " com.test.YourMainClass");
@@ -30,7 +30,7 @@ We create a new task called 'createdeps' that will write a script to the `/tmp/`
 
 Tieing it all together, a one-liner to write out the script and execute it:
 
-{% highlight %}
+{% highlight groovy %}
 gradle createdeps; sh -c /tmp/runcomponent.sh
 {% endhighlight %}
 
