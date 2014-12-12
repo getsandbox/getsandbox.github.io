@@ -58,7 +58,7 @@ Finally describing your business logic, a tough enough job as it stands already 
 
  Sandbox is a cloud hosted stubbing platform that allows you (and your team) to create stubs ranging from simple canned responses, to complex fully simulated applications all in a simple Git versioned JavaScript environment. 
 
- As well as the simple Sandbox runtime ([Check it out on github](https://github.com/getsandbox/sandbox)), we built a set of tools on top of this to make developers and testers jobs easier ([ more details](https://getsandbox.com/features)).
+ As well as the simple Sandbox runtime ([Check it out on github](https://github.com/getsandbox/sandbox)), we built a set of tools on top of this to make developers and testers jobs easier ([more details](https://getsandbox.com/features)).
 
  In Sandbox you are creating routes to simulate your real API. You start by either mocking out your API manually or preferably import API definition, such as Apiary markdown, WSDLs or Swagger to shortcut the process. 
 
