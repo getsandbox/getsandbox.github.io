@@ -8,6 +8,7 @@ author: nick
 ### A problem
 
 Building an API backed mobile app poses some unique problems that don't really come up all together in other applications. There are a couple of things that make them unique:
+
 - Need an API call to retrieve any resource not shipped in the app itself?
 - Better user experience if the app bundle is small (faster updates etc.)
 - Generally pushing a new app bundle is a multi day/week journey (Apple approvals etc.)
@@ -57,11 +58,11 @@ Finally describing your business logic, a tough enough job as it stands already 
 
  Sandbox is a cloud hosted stubbing platform that allows you (and your team) to create stubs ranging from simple canned responses, to complex fully simulated applications all in a simple Git versioned JavaScript environment. 
 
- As well as the simple Sandbox runtime (([Check it out on github](https://github.com/getsandbox/sandbox))), we built a set of tools on top of this to make developers and testers jobs easier ([ more details](https://getsandbox.com/features)).
+ As well as the simple Sandbox runtime ([Check it out on github](https://github.com/getsandbox/sandbox)), we built a set of tools on top of this to make developers and testers jobs easier ([ more details](https://getsandbox.com/features)).
 
  In Sandbox you are creating routes to simulate your real API. You start by either mocking out your API manually or preferably import API definition, such as Apiary markdown, WSDLs or Swagger to shortcut the process. 
 
- Most Sandbox implementations start out with simple canned responses, but can be easily extended to support logic and stateful behaviour. Each Sandbox has access to its own zero-effort persistent storage. This means simulating proper CRUD APIs is really simple, ([check out the api](https://getsandbox.com/docs/sandbox-api))
+ Most Sandbox implementations start out with simple canned responses, but can be easily extended to support logic and stateful behaviour. Each Sandbox has access to its own zero-effort persistent storage. This means simulating proper CRUD APIs is really simple, [check out the api](https://getsandbox.com/docs/sandbox-api)
 
  Sandbox solves the challenges of API integration by giving teams an unlimited number of always-on and accessible drop-in replacement environment, a simple scripting runtime and powerful debugging tools. Whether you have an existing API your testers want more control over to test error scenarios, or you are still designing your API and want to import your design and test the UI flow before proceeding that's why we built it!
 
