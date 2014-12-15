@@ -1,7 +1,7 @@
 ---
 layout: post
-heading: Testing your iOS and Android apps, APIs and backends.
-description: Deep dive into the unique challenges of testing an API and webservices driven mobile app. We cover of the different options available and their tradeoffs, and what we think is the best approach.
+heading: Options for testing your iOS and Android apps, APIs and backends with stubs.
+description: Deep dive into the unique challenges of testing an API and webservice driven mobile app. We cover of the different options available and their tradeoffs, and what we think is the best approach.
 author: nick
 ---
 
@@ -34,9 +34,9 @@ The reason this is important is a large portion of these integration problems oc
 
 #### Write a stub
 
-A stub is a small often throw-away application that aims to simulate as much of the target API as required. The simplest and most common implementation of this is a stub that responds to requests with a different 'canned' response, so you get a valid API response but it is the same response every time you make the request. These can obviously get more and more complicated as time goes by, with more and more varied canned responses to simulate different behaviours.
+A stub or mock is a small often throw-away application that aims to simulate as much of the target API as required. The simplest and most common implementation of this is a stub that responds to requests with a different 'canned' response, so you get a valid API response but it is the same response every time you make the request. These can obviously get more and more complicated as time goes by, with more and more varied canned responses to simulate different behaviours.
 
-There are *many* different libraries out there to make the job of writing a stub easier, they all generally focus around making it very easy to send a canned response to a given request. But this is only half of the problem, many API operations are not just Retrieves, what about Create, Update and Delete? It is generally very difficult to get a stub to do more than just retrieves well, making testing your app against the stub a limited and unnatural experience.
+There are *many* different libraries out there to make the job of writing a mock easier, they all generally focus around making it very easy to send a canned response to a given request. But this is only half of the problem, many API operations are not just Retrieves, what about Create, Update and Delete? It is generally very difficult to get a stub to do more than just retrieves well, making testing your app against the stub a limited and unnatural experience.
 
 #### MBaaS!
 
