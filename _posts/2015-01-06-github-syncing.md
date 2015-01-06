@@ -9,7 +9,7 @@ This month's platform update brings support for automatic two-way syncing your S
 
 ### Two-way Github Syncing
 
-<img class="img-middle" style="width:284px;" src="/lib/images/2015_01_06_github.png" />
+<img class="img-middle" style="width:720px; border: 0;" src="/lib/images/2015_01_06_github.png" />
 
 Defining and having your stateful Sandbox stubs always running and testable in the cloud is great, but in a perfect world the stub definition should be in Git versioned alongside your code and most importantly, your tests!
 
