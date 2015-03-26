@@ -26,8 +26,7 @@ There are quite a number of different properties available some of them include:
 - state
 - latitude
 - longitude
-
-#####...
+- lots more!
 
 Using the Faker library is simple, it is available to any of your JS code as a global variable already, no need to load or require() it in.
 
