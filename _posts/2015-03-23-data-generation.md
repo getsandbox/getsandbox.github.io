@@ -13,19 +13,20 @@ With this month's platform update you can now use the Faker library to generate 
 
 There are quite a number of different properties available some of them include:
 
-* firstName
-* lastName
-* fullName
-* phoneNumber
-* email
-* city
-* streetName
-* streetAddress
-* streetSuffix
-* country
-* state
-* latitude
-* longitude
+- firstName
+- lastName
+- fullName
+- phoneNumber
+- email
+- city
+- streetName
+- streetAddress
+- streetSuffix
+- country
+- state
+- latitude
+- longitude
+
 #####...
 
 Using the Faker library is simple, it is available to any of your JS code as a global variable already, no need to load or require() it in.
