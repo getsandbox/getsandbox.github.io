@@ -12,6 +12,7 @@ This month's platform update brings support for data generation helpers in the f
 With this month's platform update you can now use the Faker library to generate realistic data for many different properties increasing the value and accuracy of the Sandbox stubs you are creating.
 
 There are quite a number of different properties available some of them include:
+
 * firstName
 * lastName
 * fullName
