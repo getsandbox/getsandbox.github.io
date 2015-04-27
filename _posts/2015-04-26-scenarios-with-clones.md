@@ -23,4 +23,4 @@ A fork is useful when you have a Sandbox that might fulfill part of your needs f
 
 This can be useful in a number of scenarios, for example if you have a base Sandbox and want to quickly try out a new change without impacting existing consumers. However because a fork is permanently disconnected from the original Sandbox you should avoid making changes you want to keep in a fork, try and incorporate it into the original.
 
-We will have a future post showing in more details how to use clones to cover negative test scenarios, and how it can help you. In the mean time give it a try (https://getsandbox.com), and [hit us up](https://twitter.com/_getsandbox) with any feedback, questions or problems.
+We will have a future post showing in more details how to use clones to cover negative test scenarios, and how it can help you. In the mean time [give it a try](https://getsandbox.com), and [hit us up](https://twitter.com/_getsandbox) with any feedback, questions or problems.
