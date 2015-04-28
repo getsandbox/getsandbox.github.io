@@ -5,6 +5,8 @@ description: Cloning and forking Sandboxes enables you to support important test
 author: nick
 ---
 
+We've built Sandbox to support many different test scenarios and to be used across teams. Today we're going to look at two key features that enable this: Clones and Forks.
+
 ### Clones
 
 When you create a Sandbox, manually or via an import, it is created with route definition files (.js and .liquid), a Git repository, a state store and a unique HTTP endpoint. At this point you can add, edit and enhance your Sandbox to fit your test scenarios and that might be enough for your needs, but if you work in a team, or want better coverage you don't have to stop there.
